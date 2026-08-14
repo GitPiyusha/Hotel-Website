@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Hotel | Menu</title>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+
+/* NAVBAR */
+
+/* NAVBAR */
+nav{
+    background: rgb(103, 28, 88);
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #D4AF37;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img{
+    width: 65px;
+    height: 60px;
+    border-radius: 0;
+    display: block;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1{
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.logo h1{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text span{
+    display: block;
+    color: #D4AF37;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.logo-text .star-text{
+    font-style: italic;
+    color: #F5E6A7;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+nav ul{
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav ul li a{
+    color: #F5E6A7;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: #D4AF37;
+}
+
+nav ul li a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #D4AF37;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .35s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+nav ul li a.active-link{
+    color: #D4AF37;
+}
+
+nav ul li a.active-link::after{
+    width: 100%;
+}
+
+nav.scrolled{
+    background: #57103E;
+}
+
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #F5E6A7;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+    nav{
+        padding: 10px 5%;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 280px;
+        background: rgb(103, 28, 88);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right .4s ease;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+    nav ul.active{
+        right: 0;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .logo img{
+        width: 50px;
+        height: 46px;
+    }
+    .logo-text h1{
+        font-size: 15px;
+    }
+    .logo-text span{
+        font-size: 13px;
+    }
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f7f4ef;
+}
+
+/* HERO BANNER */
+.page-hero{
+  background:linear-gradient(150deg,rgba(178,132,53,0.85) 0%,rgba(103,28,88,0.92) 100%),
+             url('photos/chicken_bg.jpg') center/cover no-repeat;
+  height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+.page-hero h1{font-size:3rem;letter-spacing:2px;margin-bottom:10px;}
+.page-hero p{font-size:1.1rem;color:#D4AF37;letter-spacing:3px;text-transform:uppercase;}
+
+header{
+background:#111;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+header h1{
+font-size:50px;
+color:#d4af37;
+}
+
+header p{
+margin-top:10px;
+color:#ddd;
+}
+
+.gallery{
+padding:70px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:35px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.content{
+padding:25px;
+}
+
+.content h2{
+color:#222;
+margin-bottom:15px;
+}
+
+.content p{
+line-height:1.8;
+color:#666;
+}
+
+.price{
+margin-top:15px;
+font-size:22px;
+font-weight:bold;
+color:#b8860b;
+}
+
+.book-btn{
+position:fixed;
+bottom:30px;
+right:30px;
+background:#b8860b;
+color:white;
+padding:18px 28px;
+border:none;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+transition:.3s;
+}
+
+.book-btn:hover{
+background:#8b6508;
+transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+background:rgba(103, 28, 88, 0.862);
+color:white;
+padding:50px 10% 20px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:3px;
+}
+
+.footer-bottom{width:100%;text-align:center;padding-top:18px;margin-top:8px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:#F5E6A7;letter-spacing:.4px;}
+
+.social{align-items:center;flex-wrap:wrap;gap:12px;}
+.social h3{width:100%;margin:0 0 6px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;transition:.3s;}
+.social a:hover{background:#D4AF37;transform:translateY(-2px);} 
+.social i{font-size:20px;cursor:pointer;line-height:1;}body{min-height:100vh;display:flex;flex-direction:column;}
+main,section,.menu-section,.menu-card-grid{flex:1;}
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+width:400px;
+padding:30px;
+border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.close{
+font-size:30px;
+cursor:pointer;
+text-align:right;
+}
+
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="Photos/final_logo.jpeg" alt="Hotel Rukhmini Palace Logo">
+        <div class="logo-text">
+            <span class="star-text">Three Star</span>
+            <h1>Hotel Rukhmini Palace</h1>
+            <span>Admapur</span>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html" class="active-link">Menu</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="nearby_places.html">Nearby Places</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="page-hero">
+  <h1>Royal Menu</h1>
+  <p>Experience Fine Dining</p>
+</div>
+
+<section class="gallery">
+
+<div class="card">
+<img src="photos/mutton.jpg">
+<div class="content">
+<h2>Rukmini Special Mutton</h2>
+<p>Premium mutton with herbs and vegetables.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="photos/chicken-kabab.jpg">
+<div class="content">
+<h2>Chicken Kabab</h2>
+<p>Grilled chicken kabab with aromatic spices.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="photos/butter_chicken.jpg">
+<div class="content">
+<h2>Butter Chicken</h2>
+<p>Rich and creamy chicken curry with a hint of spices.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="photos/biryani.jpg">
+<div class="content">
+<h2>Dum Biryani</h2>
+<p>Authentic biryani with a blend of traditional spices and aromatic rice.</p>
+</div>
+</div>
+
+<div class="card">
+<img src="photos/veg_kolhapuri.jpg">
+<div class="content">
+<h2>Veg Kolhapuri</h2>
+<p>Rich with authentic taste of kolhapuri spices</p>
+</div>
+</div>
+
+<div class="card">
+<img src="photos/veg_tali.jpg">
+<div class="content">
+<h2>Rukmini Special Veg Tali</h2>
+<p>Delicious vegetarian dish with a blend of traditional spices.</p>
+</div>
+</div>
+
+</section>
+
+<button class="book-btn">
+🍽 Book A Table
+</button>
+
+<!-- TABLE RESERVATION MODAL -->
+<div id="tableModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6); justify-content:center; align-items:center; z-index:9999;">
+  <div class="modal-content" style="width:520px; max-width:92%; max-height:90vh; overflow-y:auto; scrollbar-width:none; border-radius:16px; padding:0; background:white;">
+
+    <!-- Header -->
+    <div style="background:rgb(103, 28, 88); padding:18px 22px; border-radius:16px 16px 0 0; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2 style="color:white; font-size:20px; margin:0;">🍽 Reserve Your Table</h2>
+        <p style="color:#D4AF37; font-size:12px; letter-spacing:1px; margin:4px 0 0;">Hotel Rukhmini Palace</p>
+      </div>
+      <span class="close" onclick="closeModal()" style="color:white; font-size:28px; line-height:1; cursor:pointer;">&times;</span>
+    </div>
+
+    <!-- Body -->
+    <form>
+      <div style="padding:22px; display:flex; flex-direction:column; gap:16px;">
+
+        <!-- Full Name -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👤 Full Name</label>
+          <input type="text" placeholder="Enter your full name" required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Mobile Number -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📞 Mobile Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">✉️ Email Address</label>
+          <input type="email" placeholder="you@example.com"
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Date & Time Row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Date</label>
+            <input type="date" required
+              style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">⏰ Time</label>
+            <input type="time" required
+              style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+          </div>
+        </div>
+
+        <!-- Number of Guests -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👥 Number of Guests</label>
+          <select required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6;">
+            <option>Select Number of Guests</option>
+            <option>1 Person</option>
+            <option>2 People</option>
+            <option>3 People</option>
+            <option>4 People</option>
+            <option>5+ People</option>
+          </select>
+        </div>
+
+        <!-- Occasion -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">🎉 Occasion</label>
+          <select
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6;">
+            <option>Occasion</option>
+            <option>Birthday Celebration</option>
+            <option>Anniversary</option>
+            <option>Family Dinner</option>
+            <option>Business Meeting</option>
+            <option>Casual Dining</option>
+          </select>
+        </div>
+
+        <!-- Special Requests -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📝 Special Requests</label>
+          <textarea rows="2" placeholder="Cake, Decoration, High Chair, etc."
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; resize:vertical; font-family:inherit;"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:0 22px 22px; display:flex; gap:10px;">
+        <button type="button" onclick="closeModal()"
+          style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; background:white; color:#555; font-size:14px; font-weight:600; cursor:pointer;">Cancel</button>
+        <button type="submit"
+          style="flex:2; padding:12px; border:none; border-radius:8px; background:rgb(103, 28, 88); color:white; font-size:15px; font-weight:bold; cursor:pointer;">Reserve Table ✨</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<!-- FOOTER -->
+
+<footer>
+
+<div>
+
+<h3>Address</h3>
+
+<p>
+Royal Hotel<br>
+Nippani-Radhanagri road, Nidhori<br>
+(Admapur-Waghapur Fata)<br>
+Tal. Kagal Dist. Kolhapur-416208<br>
+7719821141<br>
+7620766630
+</p>
+
+</div>
+
+<div class="social">
+  <h3>Follow Us</h3>
+  <a href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5" target="_blank" rel="noopener" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://wa.me/7620766630" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://facebook.com/your_facebook_page" target="_blank" rel="noopener" aria-label="Facebook">
+    <i class="fab fa-facebook"></i>
+  </a>
+</div>
+
+<div class="footer-bottom">Designed and Developed by <strong>ShreeYaan WebTech</strong></div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+function openModal(){
+  document.getElementById("tableModal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("tableModal").style.display = "none";
+}
+
+document.querySelector(".book-btn").onclick = openModal;
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuToggle.classList.remove("active");
+    });
+  });
+}
+
+window.onclick = function(e){
+  if (e.target === document.getElementById("tableModal")) {
+    closeModal();
+  }
+}
+
+</script>
+
+</body>
+</html>

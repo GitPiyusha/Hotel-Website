@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nearby Places | Hotel Rukhmini Palace</title>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#FFFDF7;
+    color:#333;
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav{
+    background:rgb(103, 28, 88);
+    padding:10px 7%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+
+    z-index:1000;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+
+    border-bottom:2px solid #D4AF37;
+
+    transition:.3s;
+}
+
+nav.scrolled{
+    padding:6px 7%;
+    box-shadow:0 4px 20px rgba(0,0,0,0.3);
+}
+
+
+/* ================= LOGO ================= */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.logo img{
+    width:65px;
+    height:60px;
+    display:block;
+}
+
+.logo-text{
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-text h1{
+    margin:0;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    line-height:1.1;
+}
+
+.logo-text span{
+    display:block;
+    color:#D4AF37;
+    font-size:16px;
+    font-weight:500;
+    letter-spacing:1px;
+    margin-top:4px;
+}
+
+.logo-text .star-text{
+    font-style:italic;
+    color:#F5E6A7;
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:1px;
+    margin-top:0;
+    margin-bottom:2px;
+}
+
+
+/* ================= NAV LINKS ================= */
+
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav ul li a{
+    color:#F5E6A7;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:500;
+
+    position:relative;
+
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#D4AF37;
+}
+
+nav ul li a::after{
+    content:"";
+
+    width:0;
+    height:2px;
+
+    background:#D4AF37;
+
+    position:absolute;
+
+    left:0;
+    bottom:-8px;
+
+    transition:.35s;
+}
+
+nav ul li a:hover::after{
+    width:100%;
+}
+
+nav ul li a.active-link{
+    color:#D4AF37;
+}
+
+nav ul li a.active-link::after{
+    width:100%;
+}
+
+
+/* ================= HAMBURGER ================= */
+
+.menu-toggle{
+    display:none;
+
+    flex-direction:column;
+    justify-content:space-between;
+
+    width:28px;
+    height:20px;
+
+    cursor:pointer;
+
+    z-index:1100;
+}
+
+.menu-toggle span{
+    display:block;
+
+    height:3px;
+    width:100%;
+
+    background:#F5E6A7;
+
+    border-radius:2px;
+
+    transition:.3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform:translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform:translateY(-9px) rotate(-45deg);
+}
+
+
+/* ================= HERO ================= */
+
+.nearby-header{
+
+    position:relative;
+
+    background-image:
+    url("https://images.unsplash.com/photo-1500534623283-312aade485b7?w=1600");
+
+    background-size:cover;
+    background-position:center;
+
+    padding:180px 10% 100px;
+
+    text-align:center;
+
+    color:white;
+
+    overflow:hidden;
+}
+
+.nearby-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(103,28,88,.88),
+        rgba(212,175,55,.55)
+    );
+}
+
+.nearby-header h1,
+.nearby-header p{
+
+    position:relative;
+    z-index:2;
+}
+
+.nearby-header h1{
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+}
+
+.nearby-header p{
+
+    color:#F5E6A7;
+
+    font-size:1rem;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+
+/* ================= INTRO ================= */
+
+.nearby-intro{
+
+    text-align:center;
+
+    padding:55px 10% 25px;
+}
+
+.nearby-intro h2{
+
+    color:rgb(103,28,88);
+
+    font-size:30px;
+
+    margin-bottom:12px;
+}
+
+.nearby-intro h2 span{
+    color:#D4AF37;
+}
+
+.nearby-intro p{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:#666;
+
+    line-height:1.8;
+
+    font-size:16px;
+}
+
+
+/* ================= FILTERS ================= */
+
+.place-filters{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    padding:25px 10%;
+}
+
+.filter-btn{
+
+    background:transparent;
+
+    border:2px solid rgb(103,28,88);
+
+    color:rgb(103,28,88);
+
+    padding:9px 22px;
+
+    border-radius:30px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+
+    background:rgb(103,28,88);
+
+    color:#F5E6A7;
+
+    border-color:#D4AF37;
+}
+
+
+/* ================= PLACES GRID ================= */
+
+.places-section{
+
+    padding:40px 10% 80px;
+
+    background:#FFFDF7;
+}
+
+.places-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:28px;
+}
+
+
+/* ================= PLACE CARD ================= */
+
+.place-card{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 6px 20px rgba(103,28,88,.15);
+
+    border:
+    1px solid rgba(212,175,55,.35);
+
+    transition:.4s;
+
+    position:relative;
+}
+
+.place-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 15px 35px rgba(103,28,88,.25);
+}
+
+
+/* IMAGE */
+
+.place-image{
+
+    position:relative;
+
+    height:230px;
+
+    overflow:hidden;
+}
+
+.place-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.5s;
+}
+
+.place-card:hover .place-image img{
+
+    transform:scale(1.08);
+}
+
+
+/* DISTANCE */
+
+.distance{
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    background:#D4AF37;
+
+    color:#4d183f;
+
+    padding:8px 14px;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.2);
+}
+
+
+/* CATEGORY */
+
+.category{
+
+    position:absolute;
+
+    bottom:15px;
+    left:15px;
+
+    background:
+    rgba(103,28,88,.9);
+
+    color:#F5E6A7;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+
+/* CARD CONTENT */
+
+.place-content{
+
+    padding:22px;
+}
+
+.place-content h3{
+
+    color:rgb(103,28,88);
+
+    font-size:21px;
+
+    margin-bottom:10px;
+}
+
+.place-content h3 i{
+
+    color:#D4AF37;
+
+    margin-right:7px;
+}
+
+.place-content p{
+
+    color:#666;
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    min-height:72px;
+}
+
+
+/* ROUTE BUTTON */
+
+.route-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:18px;
+
+    padding:10px 18px;
+
+    background:rgb(103,28,88);
+
+    color:#F5E6A7;
+
+    text-decoration:none;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    border:1px solid #D4AF37;
+
+    transition:.3s;
+}
+
+.route-btn:hover{
+
+    background:#D4AF37;
+
+    color:rgb(103,28,88);
+
+    transform:translateY(-2px);
+}
+
+
+/* ================= HOTEL INFO ================= */
+
+.hotel-location{
+
+    background:
+    linear-gradient(
+        135deg,
+        rgb(103,28,88),
+        #57103E
+    );
+
+    color:white;
+
+    margin:10px 10% 70px;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 30px rgba(103,28,88,.25);
+}
+
+.hotel-location i{
+
+    color:#D4AF37;
+
+    font-size:30px;
+
+    margin-bottom:12px;
+}
+
+.hotel-location h2{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+}
+
+.hotel-location p{
+
+    color:#F5E6A7;
+
+    line-height:1.7;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    background:
+    rgba(103,28,88,.862);
+
+    color:white;
+
+    padding:50px 10% 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:30px;
+}
+
+.footer-bottom{
+    width:100%;
+    text-align:center;
+    padding-top:18px;
+    margin-top:8px;
+    border-top:1px solid rgba(255,255,255,.2);
+    font-size:14px;
+    color:#F5E6A7;
+    letter-spacing:.4px;
+}
+
+footer h3{
+
+    margin-bottom:12px;
+}
+
+footer p{
+
+    line-height:1.6;
+}
+
+
+/* SOCIAL */
+
+.social{
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.social h3{
+
+    width:100%;
+
+    margin:0 0 6px;
+}
+
+.social a{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.1);
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.social a:hover{
+
+    background:#D4AF37;
+
+    color:rgb(103,28,88);
+
+    transform:translateY(-3px);
+}
+
+.social i{
+
+    font-size:20px;
+
+    line-height:1;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    nav{
+        padding:10px 5%;
+    }
+
+    nav.scrolled{
+        padding:6px 5%;
+    }
+
+    .logo img{
+        width:50px;
+        height:46px;
+    }
+
+    .logo-text h1{
+        font-size:15px;
+    }
+
+    .logo-text span{
+        font-size:13px;
+    }
+
+    .menu-toggle{
+        display:flex;
+    }
+
+    nav ul{
+
+        position:fixed;
+
+        top:0;
+        right:-100%;
+
+        height:100vh;
+
+        width:65%;
+        max-width:280px;
+
+        background:rgb(103,28,88);
+
+        flex-direction:column;
+
+        justify-content:center;
+        align-items:center;
+
+        gap:30px;
+
+        transition:right .4s ease;
+
+        box-shadow:
+        -4px 0 20px rgba(0,0,0,.3);
+    }
+
+    nav ul.active{
+        right:0;
+    }
+
+
+    .nearby-header{
+
+        padding:120px 6% 60px;
+    }
+
+    .nearby-header h1{
+
+        font-size:2rem;
+    }
+
+    .nearby-header p{
+
+        font-size:.8rem;
+
+        letter-spacing:2px;
+    }
+
+
+    .nearby-intro{
+
+        padding:40px 6% 15px;
+    }
+
+    .nearby-intro h2{
+
+        font-size:25px;
+    }
+
+
+    .place-filters{
+
+        justify-content:flex-start;
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+
+        padding:20px 6%;
+
+        scrollbar-width:none;
+    }
+
+    .place-filters::-webkit-scrollbar{
+        display:none;
+    }
+
+    .filter-btn{
+
+        flex:0 0 auto;
+
+        white-space:nowrap;
+    }
+
+
+    .places-section{
+
+        padding:25px 5% 60px;
+    }
+
+    .places-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+        gap:15px;
+    }
+
+    .place-image{
+
+        height:180px;
+    }
+
+    .place-content{
+
+        padding:16px;
+    }
+
+    .place-content h3{
+
+        font-size:17px;
+    }
+
+    .place-content p{
+
+        font-size:13px;
+
+        min-height:90px;
+    }
+
+    .distance{
+
+        font-size:11px;
+
+        padding:6px 10px;
+    }
+
+    .category{
+
+        font-size:10px;
+
+        padding:5px 9px;
+    }
+
+    .route-btn{
+
+        font-size:12px;
+
+        padding:8px 12px;
+    }
+
+
+    .hotel-location{
+
+        margin:10px 5% 50px;
+
+        padding:25px 18px;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:480px){
+
+    .places-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+        gap:10px;
+    }
+
+    .place-image{
+
+        height:150px;
+    }
+
+    .place-content{
+
+        padding:13px;
+    }
+
+    .place-content h3{
+
+        font-size:15px;
+    }
+
+    .place-content p{
+
+        font-size:12px;
+
+        min-height:105px;
+    }
+
+    .route-btn{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav id="navbar">
+
+    <div class="logo">
+
+        <img
+        src="Photos/final_logo.jpeg"
+        alt="Hotel Rukhmini Palace Logo">
+
+        <div class="logo-text">
+
+            <span class="star-text">
+                Three Star
+            </span>
+
+            <h1>
+                Hotel Rukhmini Palace
+            </h1>
+
+            <span>
+                Admapur
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOBILE MENU -->
+
+    <div class="menu-toggle" id="menuToggle">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <ul id="navLinks">
+
+        <li>
+            <a href="index.html">
+                Home
+            </a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="menu.html">
+                Menu
+            </a>
+        </li>
+
+        <li>
+            <a href="room.html">
+                Rooms
+            </a>
+        </li>
+
+        <li>
+            <a href="gallery.html">
+                Gallery
+            </a>
+        </li>
+
+        <li>
+            <a href="nearby_places.html"
+               class="active-link">
+                Nearby Places
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="nearby-header">
+
+    <h1>
+        Explore Nearby Places
+    </h1>
+
+    <p>
+        Discover Temples, Nature, Heritage & More
+    </p>
+
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="nearby-intro">
+
+    <h2>
+        Places Near <span>Hotel Rukhmini Palace</span>
+    </h2>
+
+    <p>
+        Our hotel is ideally located in Admapur,
+        making it convenient to explore beautiful
+        temples, historical landmarks, nature
+        destinations and cultural attractions
+        around Kolhapur district.
+    </p>
+
+</section>
+
+
+<!-- ================= FILTERS ================= -->
+
+<div class="place-filters">
+
+    <button
+    class="filter-btn active"
+    data-filter="all">
+
+        All
+
+    </button>
+
+    <button
+    class="filter-btn"
+    data-filter="temple">
+
+        Temples
+
+    </button>
+
+    <button
+    class="filter-btn"
+    data-filter="nature">
+
+        Nature
+
+    </button>
+
+    <button
+    class="filter-btn"
+    data-filter="heritage">
+
+        Heritage
+
+    </button>
+
+</div>
+
+
+<!-- ================= PLACES ================= -->
+
+<section class="places-section">
+
+<div class="places-grid">
+
+
+<!-- BALUMAMA -->
+
+<div class="place-card"
+     data-category="temple">
+
+    <div class="place-image">
+
+        <img
+        src="photos/admapur.jpg"
+        alt="Balumama Temple">
+
+        <span class="distance">
+            ~0.5 KM
+        </span>
+
+        <span class="category">
+            Temple
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-place-of-worship"></i>
+            Balumama Temple
+        </h3>
+
+        <p>
+            A revered spiritual destination
+            in Admapur, associated with
+            Sant Balumama and visited by
+            devotees throughout the year.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Sant+Sadguru+Shree+Balumama+Mandir+Admapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- RADHANAGARI -->
+
+<div class="place-card"
+     data-category="nature">
+
+    <div class="place-image">
+
+        <img
+        src="photos/radhanagari.jpg"
+        alt="Radhanagari">
+
+        <span class="distance">
+            ~18 KM
+        </span>
+
+        <span class="category">
+            Nature
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-water"></i>
+            Radhanagari
+        </h3>
+
+        <p>
+            A scenic destination surrounded
+            by forests, water bodies and
+            beautiful Western Ghats scenery.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Radhanagari+Maharashtra"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- JYOTIBA -->
+
+<div class="place-card"
+     data-category="temple">
+
+    <div class="place-image">
+
+        <img
+        src="photos/jotiba.jpg"
+        alt="Jyotiba Temple">
+
+        <span class="distance">
+            ~29 KM
+        </span>
+
+        <span class="category">
+            Temple
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-place-of-worship"></i>
+            Jyotiba Temple
+        </h3>
+
+        <p>
+            A famous hilltop temple near
+            Kolhapur offering spiritual
+            significance and scenic views
+            of the surrounding region.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Jyotiba+Temple+Kolhapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- SIDDHAGIRI -->
+
+<div class="place-card"
+     data-category="heritage">
+
+    <div class="place-image">
+
+        <img
+        src="photos/kaner_math.jpg"
+        alt="Siddhagiri Math">
+
+        <span class="distance">
+            ~33 KM
+        </span>
+
+        <span class="category">
+            Heritage
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-landmark"></i>
+            Siddhagiri Math
+        </h3>
+
+        <p>
+            Also known as Kaneri Math,
+            this cultural destination is
+            known for its museum and
+            traditional village-life displays.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Siddhagiri+Math+Kaneri+Kolhapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- PANHALA -->
+
+<div class="place-card"
+     data-category="heritage">
+
+    <div class="place-image">
+
+        <img
+        src="photos/panhala.jpg"
+        alt="Panhala Fort">
+
+        <span class="distance">
+            ~45 KM
+        </span>
+
+        <span class="category">
+            Heritage
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-fort-awesome"></i>
+            Panhala Fort
+        </h3>
+
+        <p>
+            One of Maharashtra's historic
+            hill forts, offering impressive
+            views, ancient architecture
+            and a glimpse into Maratha history.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Panhala+Fort+Kolhapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- MAHALAXMI -->
+
+<div class="place-card"
+     data-category="temple">
+
+    <div class="place-image">
+
+        <img
+        src="photos/mahalaxmi.jpg"
+        alt="Mahalaxmi Temple Kolhapur">
+
+        <span class="distance">
+            ~43 KM
+        </span>
+
+        <span class="category">
+            Temple
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-place-of-worship"></i>
+            Mahalaxmi Temple
+        </h3>
+
+        <p>
+            The famous Ambabai temple of
+            Kolhapur and one of the region's
+            most important religious
+            destinations.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Mahalaxmi+Temple+Kolhapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- RANKALA -->
+
+<div class="place-card"
+     data-category="nature">
+
+    <div class="place-image">
+
+        <img
+        src="photos/rankala.jpg"
+        alt="Rankala Lake">
+
+        <span class="distance">
+            ~45 KM
+        </span>
+
+        <span class="category">
+            Nature
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-water"></i>
+            Rankala Lake
+        </h3>
+
+        <p>
+            A popular Kolhapur destination
+            known for its peaceful waterfront,
+            evening atmosphere and scenic
+            surroundings.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Rankala+Lake+Kolhapur"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- DAJIPUR -->
+
+<div class="place-card"
+     data-category="nature">
+
+    <div class="place-image">
+
+        <img
+        src="photos/dajipur.jpg"
+        alt="Dajipur Wildlife Sanctuary">
+
+        <span class="distance">
+            ~40 KM
+        </span>
+
+        <span class="category">
+            Nature
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-tree"></i>
+            Dajipur Wildlife Sanctuary
+        </h3>
+
+        <p>
+            A beautiful forest destination
+            in the Western Ghats known for
+            wildlife, greenery and scenic
+            natural surroundings.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Dajipur+Wildlife+Sanctuary"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- NARSOBACHI WADI -->
+
+<div class="place-card"
+     data-category="temple">
+
+    <div class="place-image">
+
+        <img
+        src="photos/narsinhwadi.jpg"
+        alt="Narsobachi Wadi">
+
+        <span class="distance">
+            ~70 KM
+        </span>
+
+        <span class="category">
+            Temple
+        </span>
+
+    </div>
+
+    <div class="place-content">
+
+        <h3>
+            <i class="fas fa-place-of-worship"></i>
+            Narsobachi Wadi
+        </h3>
+
+        <p>
+            A famous spiritual destination
+            associated with Lord Dattatreya,
+            situated on the banks of the
+            Krishna and Panchganga rivers.
+        </p>
+
+        <a
+        class="route-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Narsobachi+Wadi+Maharashtra"
+        target="_blank">
+
+            <i class="fas fa-route"></i>
+            View Route
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= HOTEL LOCATION ================= -->
+
+<section class="hotel-location">
+
+    <i class="fas fa-hotel"></i>
+
+    <h2>
+        Your Stay. Your Starting Point.
+    </h2>
+
+    <p>
+        Hotel Rukhmini Palace, Admapur
+        is a convenient base for exploring
+        the temples, heritage sites and
+        natural beauty of Kolhapur district.
+    </p>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        <h3>
+            Address
+        </h3>
+
+        <p>
+
+            Hotel Rukhmini Palace<br>
+
+            Nippani-Radhanagri road, Nidhori<br>
+
+            (Admapur-Waghapur Fata)<br>
+
+            Tal. Kagal, Dist. Kolhapur – 416208<br>
+
+            📞 7719821141 / 7620766630
+
+        </p>
+
+    </div>
+
+
+    <div class="social">
+
+        <h3>
+            Follow Us
+        </h3>
+
+        <a
+        href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram">
+
+            <i class="fab fa-instagram"></i>
+
+        </a>
+
+
+        <a
+        href="https://wa.me/7620766630"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp">
+
+            <i class="fab fa-whatsapp"></i>
+
+        </a>
+
+
+        <a
+        href="https://facebook.com/your_facebook_page"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook">
+
+            <i class="fab fa-facebook"></i>
+
+        </a>
+
+    </div>
+
+    <div class="footer-bottom">
+        Designed and Developed by <strong>ShreeYaan WebTech</strong>
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* NAVBAR SCROLL */
+
+const navbar =
+document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 60){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* MOBILE MENU */
+
+const menuToggle =
+document.getElementById("menuToggle");
+
+const navLinks =
+document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+    menuToggle.classList.toggle("active");
+
+});
+
+
+/* CLOSE MOBILE MENU */
+
+navLinks.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+        menuToggle.classList.remove("active");
+
+    });
+
+});
+
+
+/* FILTER */
+
+const filterBtns =
+document.querySelectorAll(".filter-btn");
+
+const placeCards =
+document.querySelectorAll(".place-card");
+
+
+filterBtns.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        filterBtns.forEach(b =>
+            b.classList.remove("active")
+        );
+
+        btn.classList.add("active");
+
+        const filter =
+        btn.getAttribute("data-filter");
+
+
+        placeCards.forEach(card => {
+
+            const category =
+            card.getAttribute("data-category");
+
+
+            if(
+                filter === "all" ||
+                category === filter
+            ){
+
+                card.style.display = "block";
+
+            }else{
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>

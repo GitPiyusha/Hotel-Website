@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Hotel | Rooms</title>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* NAVBAR */
+
+/* NAVBAR */
+nav{
+    background: rgb(103, 28, 88);
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #D4AF37;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img{
+    width: 65px;
+    height: 60px;
+    border-radius: 0;
+    display: block;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1{
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.logo h1{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text span{
+    display: block;
+    color: #D4AF37;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.logo-text .star-text{
+    font-style: italic;
+    color: #F5E6A7;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+nav ul{
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav ul li a{
+    color: #F5E6A7;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: #D4AF37;
+}
+
+nav ul li a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #D4AF37;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .35s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+nav ul li a.active-link{
+    color: #D4AF37;
+}
+
+nav ul li a.active-link::after{
+    width: 100%;
+}
+
+nav.scrolled{
+    background: #57103E;
+}
+
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #F5E6A7;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+    nav{
+        padding: 10px 5%;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 280px;
+        background: rgb(103, 28, 88);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right .4s ease;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+    nav ul.active{
+        right: 0;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .logo img{
+        width: 50px;
+        height: 46px;
+    }
+    .logo-text h1{
+        font-size: 15px;
+    }
+    .logo-text span{
+        font-size: 13px;
+    }
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#faf8f2;
+}
+
+/* HERO BANNER */
+.page-hero{
+  background:linear-gradient(150deg,rgba(178,132,53,0.85) 0%,rgba(103,28,88,0.92) 100%),
+             url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1400') center/cover no-repeat;
+  height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+.page-hero h1{font-size:3rem;letter-spacing:2px;margin-bottom:10px;}
+.page-hero p{font-size:1.1rem;color:#D4AF37;letter-spacing:3px;text-transform:uppercase;}
+
+header{
+background:#111;
+color:white;
+padding:40px;
+text-align:center;
+}
+
+header h1{
+font-size:50px;
+color:#d4af37;
+}
+
+header p{
+margin-top:10px;
+color:#ddd;
+}
+
+.gallery{
+padding:70px 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
+
+.room{
+background:white;
+overflow:hidden;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.room:hover{
+transform:translateY(-10px);
+}
+
+.room img{
+width:100%;
+height:270px;
+object-fit:cover;
+}
+
+.details{
+padding:25px;
+}
+
+.details h2{
+margin-bottom:15px;
+}
+
+.details p{
+line-height:1.8;
+color:#666;
+}
+
+.price{
+margin-top:15px;
+font-size:25px;
+color:#b8860b;
+font-weight:bold;
+}
+
+.book-room{
+position:fixed;
+bottom:30px;
+right:30px;
+padding:18px 28px;
+background:#b8860b;
+border:none;
+color:white;
+font-size:18px;
+border-radius:50px;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+transition:.3s;
+}
+
+.book-room:hover{
+transform:scale(1.05);
+background:#8b6508;
+}
+
+/* FOOTER */
+
+footer{
+background:rgba(103, 28, 88, 0.862);
+color:white;
+padding:50px 10% 20px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.footer-bottom{width:100%;text-align:center;padding-top:18px;margin-top:8px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:#F5E6A7;letter-spacing:.4px;}
+
+.social{align-items:center;flex-wrap:wrap;gap:12px;}
+.social h3{width:100%;margin:0 0 6px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;transition:.3s;}
+.social a:hover{background:#D4AF37;transform:translateY(-2px);} 
+.social i{font-size:20px;cursor:pointer;line-height:1;}body{min-height:100vh;display:flex;flex-direction:column;}
+main,section,.rooms-grid,.room-card{flex:1;}
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+width:400px;
+padding:30px;
+border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.close{
+font-size:30px;
+cursor:pointer;
+text-align:right;
+}
+
+.my-swal-zfix {
+  z-index: 99999 !important;
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="Photos/final_logo.jpeg" alt="Hotel Rukhmini Palace Logo">
+        <div class="logo-text">
+            <span class="star-text">Three Star</span>
+            <h1>Hotel Rukhmini Palace</h1>
+            <span>Admapur</span>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="room.html" class="active-link">Rooms</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="nearby_places.html">Nearby Places</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="page-hero">
+  <h1>Luxury Rooms</h1>
+  <p>Stay With Comfort & Elegance</p>
+</div>
+
+<section class="gallery">
+
+<div class="room">
+<img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1000">
+<div class="details">
+<h2>Non AC Room</h2>
+<p>Comfortable room with king size bed and modern amenities.</p>
+</div>
+</div>
+
+<div class="room">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1000">
+<div class="details">
+<h2>AC Room</h2>
+<p>Air conditioned room with attached bathroom and smart TV.</p>
+</div>
+</div>
+
+<div class="room">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1000">
+<div class="details">
+<h2>Deluxe Suite</h2>
+<p>Premium suite with balcony, minibar and luxury furnishings.</p>
+</div>
+</div>
+
+<div class="room">
+<img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1000">
+<div class="details">
+<h2>Family Room</h2>
+<p>Spacious room perfect for family vacations and long stays.</p>
+</div>
+</div>
+
+</section>
+
+<button class="book-room">
+🛎 Book Room
+</button>
+
+<!-- POPUP MODAL -->
+<div class="popup" id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6); justify-content:center; align-items:center; z-index:9999;">
+  <div class="popup-box" style="width:480px; max-height:90vh; overflow-y:auto; border-radius:16px; padding:0;">
+
+    <!-- Header -->
+    <div style="background:rgb(103, 28, 88); padding:18px 22px; border-radius:16px 16px 0 0; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2 style="color:white; font-size:20px; margin:0;">🛎 Book a Room</h2>
+        <p style="color:#D4AF37; font-size:12px; letter-spacing:1px; margin:4px 0 0;">Hotel Rukhmini Palace</p>
+      </div>
+      <span class="close" onclick="closeModal()" style="color:white; font-size:28px; line-height:1;">&times;</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:22px; display:flex; flex-direction:column; gap:16px;">
+
+      <!-- Name -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👤 Full Name</label>
+        <input type="text" id="guestName" placeholder="Enter your full name"
+          style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📞 Phone Number</label>
+        <input type="tel" id="guestPhone" placeholder="+91 XXXXX XXXXX"
+          style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+      </div>
+
+      <!-- Date Time Row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Check-in</label>
+          <input type="datetime-local" id="checkin"
+            style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Check-out</label>
+          <input type="datetime-local" id="checkout"
+            style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+        </div>
+      </div>
+
+        <!-- Room Multi-select -->
+    <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:8px;">🚪 Select Room(s)</label>
+        <div id="roomDropdown" style="position:relative;">
+            <div id="roomDropdownToggle" onclick="toggleRoomDropdown()"
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <span id="roomDropdownLabel">Select Room(s)</span>
+            <span style="font-size:12px; color:#888;">▾</span>
+            </div>
+            <div id="roomDropdownList"
+            style="display:none; position:absolute; top:calc(100% + 4px); left:0; right:0; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.1); z-index:10; overflow:hidden;"></div>
+        </div>
+        <div id="selectedTags" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; min-height:20px;"></div>
+    </div>
+
+      <!-- Number of Guests -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:8px;">👥 Number of Guests</label>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button onclick="changePeople(-1)"
+            style="width:34px; height:34px;color: #222; border:1px solid #ddd; border-radius:8px; background:#f5f5f5; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">−</button>
+          <span id="peopleCount" style="font-size:18px; font-weight:bold; min-width:28px; text-align:center;">2</span>
+          <button onclick="changePeople(1)"
+            style="width:34px; height:34px; color: #222; border:1px solid #ddd; border-radius:8px; background:#f5f5f5; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">+</button>
+          <span style="font-size:13px; color:#888;">guests</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:0 22px 22px; display:flex; gap:10px;">
+      <button onclick="closeModal()"
+        style="flex:1; padding:11px; border:1px solid #ddd; border-radius:8px; color:#555; background:white; font-size:14px; cursor:pointer;">Cancel</button>
+      <button onclick="submitBooking()"
+        style="flex:2; padding:11px; border:none; border-radius:8px; background:rgba(124,8,8,0.862); color:white; font-size:15px; font-weight:bold; cursor:pointer;">✅ Confirm Booking</button>
+    </div>
+
+  </div>
+</div>
+<!-- FOOTER -->
+
+<footer>
+
+<div>
+
+<h3>Address</h3>
+
+<p>
+Royal Hotel<br>
+Nippani-Radhanagri road, Nidhori<br>
+(Admapur-Waghapur Fata)<br>
+Tal. Kagal Dist. Kolhapur-416208<br>
+7719821141<br>
+7620766630
+</p>
+
+</div>
+
+<div class="social">
+
+<h3>Follow Us</h3>
+
+        <a href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/7620766630" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com/your_facebook_page" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+
+</div>
+
+<div class="footer-bottom">Designed and Developed by <strong>ShreeYaan WebTech</strong></div>
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+function openModal(){
+  document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("bookingModal").style.display = "none";
+}
+
+document.querySelector(".book-room").onclick = openModal;
+
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+    });
+  });
+}
+
+window.onclick = function(e){
+  if (e.target === document.getElementById("bookingModal")) {
+    closeModal();
+  }
+}
+
+const roomData = ["AC", "Non-AC", "Deluxe", "Suite", "Family Room"];
+let selectedRooms = new Set();
+let guestCount = 2;
+
+function buildRoomGrid(){
+  const list = document.getElementById("roomDropdownList");
+  roomData.forEach(type => {
+    const item = document.createElement("label");
+    item.style.cssText = "display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:14px; cursor:pointer; border-bottom:1px solid #f0f0f0;";
+    item.innerHTML = `<input type="checkbox" value="${type}" style="width:16px; height:16px; cursor:pointer;"> ${type}`;
+    item.querySelector("input").onchange = (e) => {
+      if (e.target.checked) selectedRooms.add(type);
+      else selectedRooms.delete(type);
+      renderTags();
+      updateRoomLabel();
+    };
+    list.appendChild(item);
+  });
+}
+
+function toggleRoomDropdown(){
+  const list = document.getElementById("roomDropdownList");
+  list.style.display = list.style.display === "none" ? "block" : "none";
+}
+
+function updateRoomLabel(){
+  document.getElementById("roomDropdownLabel").textContent =
+    selectedRooms.size ? [...selectedRooms].join(", ") : "Select Room(s)";
+}
+
+document.addEventListener("click", (e) => {
+  const dropdown = document.getElementById("roomDropdown");
+  if (dropdown && !dropdown.contains(e.target)) {
+    document.getElementById("roomDropdownList").style.display = "none";
+  }
+});
+
+function renderTags(){
+  const tags = document.getElementById("selectedTags");
+  tags.innerHTML = "";
+  selectedRooms.forEach(type => {
+    const t = document.createElement("span");
+    t.style.cssText = "background:#fef2f2; border:1px solid #fca5a5; color:#991b1b; font-size:12px; padding:3px 10px; border-radius:20px;";
+    t.textContent = type;
+    tags.appendChild(t);
+  });
+}
+
+function changePeople(d){
+  guestCount = Math.max(1, Math.min(20, guestCount + d));
+  document.getElementById("peopleCount").textContent = guestCount;
+}
+
+async function submitBooking(){
+  const name = document.getElementById("guestName").value.trim();
+  const phone = document.getElementById("guestPhone").value.trim();
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+
+  if (!name || !phone || !checkin || !checkout || selectedRooms.size === 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Missing Details",
+      text: "Please fill all fields and select at least one room.",
+      confirmButtonColor: "rgba(124,8,8,0.862)"
+    });
+    return;
+  }
+
+  Swal.fire({
+    title: "Sending booking...",
+    allowOutsideClick: false,
+    didOpen: () => Swal.showLoading()
+  });
+
+  try {
+    const res = await fetch("http://localhost:3000/send-booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name, phone, checkin, checkout,
+        rooms: [...selectedRooms].join(", "),
+        guests: guestCount
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      Swal.fire({
+        icon: "success",
+        title: "Booking Confirmed! 🎉",
+        html: `
+          <div style="text-align:left; font-size:14px; line-height:1.8;">
+            <b>Name:</b> ${name}<br>
+            <b>Phone:</b> ${phone}<br>
+            <b>Check-in:</b> ${checkin}<br>
+            <b>Check-out:</b> ${checkout}<br>
+            <b>Rooms:</b> ${[...selectedRooms].join(", ")}<br>
+            <b>Guests:</b> ${guestCount}
+          </div>
+        `,
+        confirmButtonText: "Great!",
+        confirmButtonColor: "rgba(124,8,8,0.862)"
+      }).then(() => closeModal());
+    } else {
+      throw new Error(data.error);
+    }
+  } catch (err) {
+    Swal.fire({
+      icon: "error",
+      title: "Something went wrong",
+      text: "Could not send booking. Please try again or call us directly.",
+      confirmButtonColor: "rgba(124,8,8,0.862)"
+    });
+  }
+}
+
+buildRoomGrid();
+
+</script>
+
+</body>
+</html>

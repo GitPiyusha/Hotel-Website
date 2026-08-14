@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Hotel</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:white;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* NAVBAR */
+nav{
+    background: rgb(103, 28, 88);
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #D4AF37;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img{
+    width: 65px;
+    height: 60px;
+    border-radius: 0;
+    display: block;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1{
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.logo h1{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text span{
+    display: block;
+    color: #D4AF37;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.logo-text .star-text{
+    font-style: italic;
+    color: #F5E6A7;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+nav ul{
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav ul li a{
+    color: #F5E6A7;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: #D4AF37;
+}
+
+nav ul li a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #D4AF37;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .35s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+nav.scrolled{
+    background: #57103E;
+}
+
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #F5E6A7;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+    nav{
+        padding: 10px 5%;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 280px;
+        background: rgb(103, 28, 88);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right .4s ease;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+    nav ul.active{
+        right: 0;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .logo img{
+        width: 50px;
+        height: 46px;
+    }
+    .logo-text h1{
+        font-size: 15px;
+    }
+    .logo-text span{
+        font-size: 13px;
+    }
+}
+.floating-buttons{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2000;
+}
+
+.float-btn{
+    background: #D4AF37;
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transition: .3s;
+}
+
+.float-btn:hover{
+    background: #b8860b;
+    transform: translateY(-3px);
+}
+
+@media(max-width:768px){
+    .floating-buttons{
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .float-btn{
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+}
+/* HERO */
+.overlay{
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    color: white;
+}
+
+.overlay h1{
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.overlay p{
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+button{
+    background:#D4AF37;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ABOUT */
+
+section{
+padding:80px 10%;
+}
+
+h2{
+color:rgb(103, 28, 88);
+margin-bottom:40px;
+text-align:center;
+}
+
+
+/* EXPLORE */
+#explore{
+    padding:80px 8%;
+    background:#f8f5ef;
+}
+
+#explore h2{
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:50px;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:350px;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card-content h3{
+    margin-bottom:15px;
+    color:#222;
+}
+
+.card-content p{
+    color:#666;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn-outline,
+.btn-gold{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.3s;
+}
+
+.btn-outline{
+    background:white;
+    color:#b8860b;
+    border:2px solid #b8860b;
+}
+
+.btn-outline:hover{
+    background:#b8860b;
+    color:white;
+}
+
+.btn-gold{
+    background:#b8860b;
+    color:white;
+}
+
+.btn-gold:hover{
+    background:#8b6508;
+}
+.cards{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.card{
+width:350px;
+box-shadow:0 0 15px silver;
+border-radius:10px;
+overflow:hidden;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.card h3{
+padding:20px;
+}
+
+.btn-gold{
+    background:#b8860b;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:16px;
+}
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    z-index:1000;
+}
+
+.modal-content{
+    width:500px;
+    max-width:92%;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+.modal-content h2{
+    text-align:center;
+    color:#b8860b;
+    font-size:32px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#888;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:15px 18px;
+    border:none;
+    background:#f6f6f6;
+    border-radius:14px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    background:white;
+    box-shadow:0 0 0 2px #d4af37;
+}
+
+.submit-btn{
+    width:100%;
+    border:none;
+    background:#b8860b;
+    color:white;
+    padding:16px;
+    border-radius:50px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#9c7207;
+}
+
+.close{
+    float:right;
+    font-size:32px;
+    cursor:pointer;
+    color:#888;
+}
+
+.submit-btn{
+    width:100%;
+    padding:15px;
+    background:#b8860b;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* SERVICES */
+
+.service-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.service{
+background:rgb(103, 28, 88);
+color:white;
+padding:30px;
+text-align:center;
+border-radius:10px;
+}
+
+/* Footer / action buttons */
+.modal-footer,
+.popup-footer{
+    padding: 0 24px 24px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-cancel{
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    background: white;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-cancel:hover{
+    background: #f5f5f5;
+}
+
+.submit-btn,
+.btn-confirm{
+    flex: 2;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    background: rgb(103, 28, 88);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 6px 18px rgba(103,28,88,0.35);
+}
+
+.submit-btn:hover,
+.btn-confirm:hover{
+    background: #57103E;
+    transform: translateY(-2px);
+}
+
+/* CONTACT */
+
+#contact{
+    padding:100px 8%;
+    background:linear-gradient(to right,#f8f5ef,#fff);
+}
+
+.contact-container{
+    display:flex;
+    gap:50px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.contact-info{
+    flex:1;
+}
+
+.tag{
+    color:#b8860b;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+.contact-info h2{
+    font-size:3rem;
+    margin:20px 0;
+    color:#222;
+}
+
+.contact-info p{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.info{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    font-size:1.1rem;
+    color:#444;
+}
+
+.contact-form{
+    flex:1;
+    background:#fff;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
+}
+
+.contact-form h3{
+    margin-bottom:25px;
+    color:#222;
+}
+
+.input-box{
+    margin-bottom:20px;
+}
+
+.input-box input,
+.input-box textarea{
+    width:100%;
+    padding:16px 20px;
+    border:none;
+    background:#f5f5f5;
+    border-radius:15px;
+    font-size:16px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-box input:focus,
+.input-box textarea:focus{
+    background:white;
+    box-shadow:0 0 0 2px #b8860b;
+}
+
+.contact-form button{
+    width:100%;
+    padding:16px;
+    border:none;
+    background:#b8860b;
+    color:white;
+    font-size:17px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.contact-form button:hover{
+    background:#8b6508;
+    transform:translateY(-3px);
+}
+
+@media(max-width:768px){
+
+.contact-container{
+    flex-direction:column;
+}
+
+.contact-info h2{
+    font-size:2.2rem;
+}
+
+}
+
+/* FOOTER */
+
+footer{
+background:rgba(103, 28, 88, 0.862);
+color:white;
+padding:50px 10%;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:30px;
+}
+
+.social{align-items:center;flex-wrap:wrap;gap:12px;}
+.social h3{width:100%;margin:0 0 6px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;transition:.3s;}
+.social a:hover{background:#D4AF37;transform:translateY(-2px);} 
+.social i{font-size:20px;cursor:pointer;line-height:1;}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+.quick-links li {
+    margin-bottom: 6px;
+}
+
+.quick-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.quick-links a:hover {
+    text-decoration: underline;
+}
+
+/* POPUP */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+width:400px;
+padding:30px;
+border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.close{
+font-size:30px;
+cursor:pointer;
+text-align:right;
+}
+
+/* RESPONSIVE */
+
+
+
+.overlay h1{
+font-size:40px;
+}
+
+
+</style>
+</head>
+<body>
+<div class="floating-buttons">
+    <button class="float-btn book-room-btn" onclick="openRoomModal()">Book Room</button>
+    <button class="float-btn book-table-btn" onclick="openModal()">Book Table</button>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="Photos/final_logo.jpeg" alt="Hotel Rukhmini Palace Logo">
+        <div class="logo-text">
+            <span class="star-text">Three Star</span>
+            <h1>Hotel Rukhmini Palace</h1>
+            <span>Admapur</span>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul id="navLinks">
+        <li><a href="index.html" class="active-link">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="nearby_places.html">Nearby Places</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero"
+    style="
+        background-image: url('Photos/hotel_img.jpg.jpeg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+    ">
+
+
+</section>
+
+<!-- EXPLORE -->
+<section id="explore">
+
+    <h2>Explore Our Services</h2>
+
+    <div class="cards">
+
+        <!-- Restaurant Card -->
+        <div class="card">
+            <img src="Photos/dining_area.jpg.jpeg" alt="Restaurant">
+
+            <div class="card-content">
+                <h3>🍽️ Explore Menu</h3>
+                <p>
+                    Discover our chef's special dishes and enjoy a memorable dining experience.
+                </p>
+
+                <div class="buttons">
+                    <button class="btn-outline" onclick="window.location.href='menu.html'">View Menu</button>
+                    <button class="btn-gold" onclick="openModal()">Book Table</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rooms Card -->
+        <div class="card">
+            <img src="Photos/room1.jpg" alt="Room">
+
+            <div class="card-content">
+                <h3>🛏️ Explore Rooms</h3>
+                <p>
+                    Experience comfort and luxury with our premium suites and rooms.
+                </p>
+
+                <div class="buttons">
+                    <button class="btn-outline" onclick="window.location.href='room.html'">View Rooms</button>
+                    <button class="btn-gold">Book Room</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- Modal -->
+
+<!-- TABLE RESERVATION MODAL -->
+<div id="tableModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6); justify-content:center; align-items:center; z-index:9999;">
+  <div class="modal-content" style="width:520px; max-width:92%; max-height:90vh; overflow-y:auto; scrollbar-width:none; border-radius:16px; padding:0; background:white;">
+
+    <!-- Header -->
+    <div style="background:rgb(103, 28, 88); padding:18px 22px; border-radius:16px 16px 0 0; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2 style="color:white; font-size:20px; margin:0;">🍽 Reserve Your Table</h2>
+        <p style="color:#D4AF37; font-size:12px; letter-spacing:1px; margin:4px 0 0;">Hotel Rukhmini Palace</p>
+      </div>
+      <span class="close" onclick="closeModal()" style="color:white; font-size:28px; line-height:1; cursor:pointer;">&times;</span>
+    </div>
+
+    <!-- Body -->
+    <form>
+      <div style="padding:22px; display:flex; flex-direction:column; gap:16px;">
+
+        <!-- Full Name -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👤 Full Name</label>
+          <input type="text" placeholder="Enter your full name" required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Mobile Number -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📞 Mobile Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">✉️ Email Address</label>
+          <input type="email" placeholder="you@example.com"
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+        </div>
+
+        <!-- Date & Time Row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Date</label>
+            <input type="date" required
+              style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+          </div>
+          <div>
+            <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">⏰ Time</label>
+            <input type="time" required
+              style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+          </div>
+        </div>
+
+        <!-- Number of Guests -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👥 Number of Guests</label>
+          <select required
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6;">
+            <option>Select Number of Guests</option>
+            <option>1 Person</option>
+            <option>2 People</option>
+            <option>3 People</option>
+            <option>4 People</option>
+            <option>5+ People</option>
+          </select>
+        </div>
+
+        <!-- Occasion -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">🎉 Occasion</label>
+          <select
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6;">
+            <option>Occasion</option>
+            <option>Birthday Celebration</option>
+            <option>Anniversary</option>
+            <option>Family Dinner</option>
+            <option>Business Meeting</option>
+            <option>Casual Dining</option>
+          </select>
+        </div>
+
+        <!-- Special Requests -->
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📝 Special Requests</label>
+          <textarea rows="2" placeholder="Cake, Decoration, High Chair, etc."
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; resize:vertical; font-family:inherit;"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:0 22px 22px; display:flex; gap:10px;">
+        <button type="button" onclick="closeModal()"
+          style="flex:1; padding:12px; border:1px solid #ddd; border-radius:8px; background:white; color:#555; font-size:14px; font-weight:600; cursor:pointer;">Cancel</button>
+        <button type="submit"
+          style="flex:2; padding:12px; border:none; border-radius:8px; background:rgb(103, 28, 88); color:white; font-size:15px; font-weight:bold; cursor:pointer;">Reserve Table ✨</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- POPUP MODAL -->
+<div class="popup" id="bookingModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6); justify-content:center; align-items:center; z-index:9999;">
+  <div class="popup-box" style="width:480px; max-height:90vh; overflow-y:auto; border-radius:16px; padding:0;">
+
+    <!-- Header -->
+    <div style="background:rgba(124,8,8,0.862); padding:18px 22px; border-radius:16px 16px 0 0; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2 style="color:white; font-size:20px; margin:0;">🛎 Book a Room</h2>
+        <p style="color:#D4AF37; font-size:12px; letter-spacing:1px; margin:4px 0 0;">Hotel Rukhmini Palace</p>
+      </div>
+      <span class="close" onclick="closeModal()" style="color:white; font-size:28px; line-height:1;">&times;</span>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:22px; display:flex; flex-direction:column; gap:16px;">
+
+      <!-- Name -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">👤 Full Name</label>
+        <input type="text" id="guestName" placeholder="Enter your full name"
+          style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📞 Phone Number</label>
+        <input type="tel" id="guestPhone" placeholder="+91 XXXXX XXXXX"
+          style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box;">
+      </div>
+
+      <!-- Date Time Row -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Check-in</label>
+          <input type="datetime-local" id="checkin"
+            style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:13px; color:#666; display:block; margin-bottom:5px;">📅 Check-out</label>
+          <input type="datetime-local" id="checkout"
+            style="width:100%; padding:10px 8px; border:1px solid #ddd; border-radius:8px; font-size:13px; box-sizing:border-box;">
+        </div>
+      </div>
+
+        <!-- Room Multi-select -->
+    <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:8px;">🚪 Select Room(s)</label>
+        <div id="roomDropdown" style="position:relative;">
+            <div id="roomDropdownToggle" onclick="toggleRoomDropdown()"
+            style="width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:8px; font-size:14px; box-sizing:border-box; background:#f6f6f6; cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <span id="roomDropdownLabel">Select Room(s)</span>
+            <span style="font-size:12px; color:#888;">▾</span>
+            </div>
+            <div id="roomDropdownList"
+            style="display:none; position:absolute; top:calc(100% + 4px); left:0; right:0; background:white; border:1px solid #ddd; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,.1); z-index:10; overflow:hidden;"></div>
+        </div>
+        <div id="selectedTags" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; min-height:20px;"></div>
+    </div>
+
+      <!-- Number of Guests -->
+      <div>
+        <label style="font-size:13px; color:#666; display:block; margin-bottom:8px;">👥 Number of Guests</label>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button onclick="changePeople(-1)"
+            style="width:34px; height:34px;color: #222; border:1px solid #ddd; border-radius:8px; background:#f5f5f5; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">−</button>
+          <span id="peopleCount" style="font-size:18px; font-weight:bold; min-width:28px; text-align:center;">2</span>
+          <button onclick="changePeople(1)"
+            style="width:34px; height:34px; color: #222; border:1px solid #ddd; border-radius:8px; background:#f5f5f5; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">+</button>
+          <span style="font-size:13px; color:#888;">guests</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:0 22px 22px; display:flex; gap:10px;">
+      <button onclick="closeModal()"
+        style="flex:1; padding:11px; border:1px solid #ddd; border-radius:8px; color:#555; background:white; font-size:14px; cursor:pointer;">Cancel</button>
+      <button onclick="submitBooking()"
+        style="flex:2; padding:11px; border:none; border-radius:8px; background:rgba(124,8,8,0.862); color:white; font-size:15px; font-weight:bold; cursor:pointer;">✅ Confirm Booking</button>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section>
+
+<h2>Services</h2>
+
+<div class="service-grid">
+
+<div class="service">🍽 Restaurant</div>
+<div class="service">📶 Free WiFi</div>
+<div class="service">🚗 Parking</div>
+<div class="service">🛎 Room Service</div>
+<div class="service">❄ AC Rooms</div>
+<div class="service">🎉 Event Hall</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+
+    <div class="contact-container">
+
+        <!-- Left Side -->
+        <div class="contact-info">
+            <span class="tag">Get In Touch</span>
+            <h2>We're Here To Make Your Stay Memorable</h2>
+
+            <p>
+                Have questions or special requests? Contact our team and we'll
+                be delighted to assist you with reservations, dining, and more.
+            </p>
+
+            <div class="info">
+                <div>📍 Admapur, Maharashtra, India</div>
+                <div>📞 7719821141</div>
+                <div>✉️ hotelrukminipalace@gmail.com</div>
+                <div>🕒 Open 24×7</div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+
+            <form>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Your Name">
+                </div>
+
+                <div class="input-box">
+                    <input type="email" placeholder="Your Email">
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Phone Number">
+                </div>
+
+                <div class="input-box">
+                    <textarea rows="5" placeholder="Your Message"></textarea>
+                </div>
+
+                <button type="submit">Send Message ✈</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        <h3>Address</h3>
+
+        <p>
+            Royal Hotel<br>
+            Nippani-Radhanagri road, Nidhori<br>
+            (Admapur-Waghapur Fata)<br>
+            Tal. Kagal Dist. Kolhapur-416208<br>
+            7719821141<br>
+            7620766630
+        </p>
+    </div>
+
+    <div class="quick-links">
+        <h3>Quick Links</h3>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="restaurant.html">Restaurant</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blogs.html">Blogs</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="refund-policy.html">Refund Policy</a></li>
+        </ul>
+
+        <h3>Rooms</h3>
+        <ul>
+            <li><a href="deluxe-room.html">Deluxe Room (Non AC)</a></li>
+            <li><a href="executive-room-ac.html">Executive Room (AC)</a></li>
+            <li><a href="executive-room-non-ac.html">Executive Room (Non AC)</a></li>
+        </ul>
+    </div>
+
+    <div class="social">
+        <h3>Follow Us</h3>
+
+        <a href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/7620766630" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com/your_facebook_page" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+    </div>
+
+    <div class="footer-bottom">
+        Designed and Developed by <strong>ShreeYaan WebTech</strong>
+    </div>
+
+</footer>
+
+
+
+<script>
+
+function openRoom(){
+document.getElementById("roomPopup").style.display="flex";
+}
+
+function openTable(){
+document.getElementById("tablePopup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("roomPopup").style.display="none";
+document.getElementById("tablePopup").style.display="none";
+}
+
+function sendRoom(){
+
+let name=document.getElementById("roomName").value;
+let phone=document.getElementById("roomPhone").value;
+
+let msg=`Room Booking
+Name: ${name}
+Phone: ${phone}`;
+
+window.open(
+"https://wa.me/91XXXXXXXXXX?text="+encodeURIComponent(msg)
+);
+
+}
+
+function sendTable(){
+
+let name=document.getElementById("tableName").value;
+let phone=document.getElementById("tablePhone").value;
+
+let msg=`Table Booking
+Name: ${name}
+Phone: ${phone}`;
+
+window.open(
+"https://wa.me/91XXXXXXXXXX?text="+encodeURIComponent(msg)
+);
+
+}
+
+function openModal() {
+    document.getElementById("tableModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("tableModal").style.display = "none";
+    document.getElementById("bookingModal").style.display = "none";
+}
+
+window.onclick = function(e){
+    ["tableModal", "bookingModal"].forEach(id => {
+        let modal = document.getElementById(id);
+        if (e.target === modal) modal.style.display = "none";
+    });
+}
+
+
+const roomData = ["AC", "Non-AC", "Deluxe", "Suite", "Family Room"];
+let selectedRooms = new Set();
+
+function buildRoomGrid() {
+  const list = document.getElementById("roomDropdownList");
+  roomData.forEach(type => {
+    const item = document.createElement("label");
+    item.style.cssText = "display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:14px; cursor:pointer; border-bottom:1px solid #f0f0f0;";
+    item.innerHTML = `<input type="checkbox" value="${type}" style="width:16px; height:16px; cursor:pointer;"> ${type}`;
+    item.querySelector("input").onchange = (e) => {
+      if (e.target.checked) selectedRooms.add(type);
+      else selectedRooms.delete(type);
+      renderTags();
+      updateRoomLabel();
+    };
+    list.appendChild(item);
+  });
+}
+
+function toggleRoomDropdown() {
+  const list = document.getElementById("roomDropdownList");
+  list.style.display = list.style.display === "none" ? "block" : "none";
+}
+
+function updateRoomLabel() {
+  document.getElementById("roomDropdownLabel").textContent =
+    selectedRooms.size ? [...selectedRooms].join(", ") : "Select Room(s)";
+}
+
+// close dropdown on outside click
+document.addEventListener("click", (e) => {
+  const dropdown = document.getElementById("roomDropdown");
+  if (dropdown && !dropdown.contains(e.target)) {
+    document.getElementById("roomDropdownList").style.display = "none";
+  }
+});
+function renderTags() {
+  const tags = document.getElementById("selectedTags");
+  tags.innerHTML = "";
+  selectedRooms.forEach(no => {
+    const t = document.createElement("span");
+    t.style.cssText = "background:#fef2f2; border:1px solid #fca5a5; color:#991b1b; font-size:12px; padding:3px 10px; border-radius:20px;";
+    t.textContent = "Room " + no;
+    tags.appendChild(t);
+  });
+}
+
+let guestCount = 2;
+
+function changePeople(d) {
+  guestCount = Math.max(1, Math.min(20, guestCount + d));
+  document.getElementById("peopleCount").textContent = guestCount;
+}
+
+function openRoomModal() {
+  document.getElementById("bookingModal").style.display = "flex";
+}
+
+function closeRoomModal() {
+  document.getElementById("bookingModal").style.display = "none";
+}
+
+function submitBooking() {
+  const name = document.getElementById("guestName").value.trim();
+  const phone = document.getElementById("guestPhone").value.trim();
+  const checkin = document.getElementById("checkin").value;
+  const checkout = document.getElementById("checkout").value;
+  if (!name || !phone || !checkin || !checkout || selectedRooms.size === 0) {
+    alert("Please fill all fields and select at least one room.");
+    return;
+  }
+  alert(`Booking confirmed!\n\nName: ${name}\nPhone: ${phone}\nRooms: ${[...selectedRooms].join(", ")}\nGuests: ${guestCount}`);
+  closeRoomModal();
+}
+
+buildRoomGrid();
+
+const bookRoomBtn = document.querySelector(".book-room");
+if (bookRoomBtn) bookRoomBtn.onclick = openRoomModal;
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuToggle.classList.remove("active");
+    });
+  });
+}
+</script>
+
+</body>
+</html>

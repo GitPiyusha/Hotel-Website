@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – Hotel Rukhmini Palace</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Trebuchet MS','Lucida Sans Unicode',Arial,sans-serif;scroll-behavior:smooth;}
+body{background:#fff;min-height:100vh;display:flex;flex-direction:column;}
+
+/* NAVBAR */
+
+/* NAVBAR */
+nav{
+    background: rgb(103, 28, 88);
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #D4AF37;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img{
+    width: 65px;
+    height: 60px;
+    border-radius: 0;
+    display: block;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1{
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.logo h1{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text span{
+    display: block;
+    color: #D4AF37;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.logo-text .star-text{
+    font-style: italic;
+    color: #F5E6A7;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+nav ul{
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav ul li a{
+    color: #F5E6A7;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: #D4AF37;
+}
+
+nav ul li a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #D4AF37;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .35s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+nav.scrolled{
+    background: #57103E;
+}
+
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #F5E6A7;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+    nav{
+        padding: 10px 5%;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 280px;
+        background: rgb(103, 28, 88);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right .4s ease;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+    nav ul.active{
+        right: 0;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .logo img{
+        width: 50px;
+        height: 46px;
+    }
+    .logo-text h1{
+        font-size: 15px;
+    }
+    .logo-text span{
+        font-size: 13px;
+    }
+}
+
+/* HERO BANNER */
+.page-hero{
+  background:linear-gradient(150deg,rgba(178,132,53,0.85) 0%,rgba(103,28,88,0.92) 100%),
+             url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1400') center/cover no-repeat;
+  height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+}
+.page-hero h1{font-size:3rem;letter-spacing:2px;margin-bottom:10px;}
+.page-hero p{font-size:1.1rem;color:#D4AF37;letter-spacing:3px;text-transform:uppercase;}
+
+/* SECTION */
+.section{padding:80px 10%;}
+.section-title{text-align:center;font-size:2.2rem;color:rgb(103, 28, 88);margin-bottom:50px;position:relative;}
+.section-title::after{content:"";display:block;width:60px;height:3px;background:#D4AF37;margin:12px auto 0;}
+
+/* INFO CARDS */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;margin-bottom:70px;}
+.info-card{background:#f8f5ef;border-radius:16px;padding:35px 24px;text-align:center;border-bottom:4px solid #D4AF37;transition:transform .3s;}
+.info-card:hover{transform:translateY(-6px);}
+.info-card i{font-size:2rem;color:#b8860b;margin-bottom:14px;}
+.info-card h3{color:rgb(103, 28, 88);margin-bottom:8px;font-size:1.1rem;}
+.info-card p{color:#555;font-size:15px;line-height:1.6;}
+.info-card a{color:#b8860b;text-decoration:none;}
+
+/* CONTACT LAYOUT */
+.contact-layout{display:flex;gap:50px;align-items:flex-start;flex-wrap:wrap;}
+
+/* FORM */
+.contact-form{flex:1;min-width:300px;background:#fff;padding:40px;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);}
+.contact-form h3{color:rgb(103, 28, 88);font-size:1.6rem;margin-bottom:25px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+.input-box{margin-bottom:18px;}
+.input-box label{display:block;font-size:13px;color:#888;margin-bottom:6px;letter-spacing:.5px;}
+.input-box input,
+.input-box select,
+.input-box textarea{
+  width:100%;padding:14px 16px;border:none;background:#f6f6f6;
+  border-radius:12px;font-size:15px;outline:none;transition:.3s;
+  font-family:inherit;
+}
+.input-box input:focus,
+.input-box select:focus,
+.input-box textarea:focus{background:#fff;box-shadow:0 0 0 2px #D4AF37;}
+.submit-btn{
+  width:100%;padding:16px;background:#b8860b;
+  color:#fff;border:none;border-radius:50px;font-size:17px;
+  cursor:pointer;transition:.3s;margin-top:5px;
+}
+.submit-btn:hover{background:#9c7207;transform:translateY(-3px);}
+
+/* MAP PLACEHOLDER */
+.map-box{flex:1;min-width:300px;}
+.map-box h3{color:rgb(103, 28, 88);font-size:1.4rem;margin-bottom:20px;}
+.map-frame{width:100%;height:360px;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.12);}
+.map-frame iframe{width:100%;height:100%;border:none;}
+.direction-info{margin-top:22px;background:#f8f5ef;border-radius:14px;padding:22px 20px;}
+.direction-info p{color:#555;font-size:15px;line-height:1.8;}
+.direction-info strong{color:rgb(103, 28, 88);}
+
+/* WHATSAPP FLOATING */
+.whatsapp-float{
+  position:fixed;bottom:28px;right:28px;
+  background:#25D366;
+  color:#fff;
+  width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  text-decoration:none;transition:transform .3s;z-index:999;
+}
+.whatsapp-float:hover{transform:scale(1.12);}
+
+/* FOOTER */
+footer{background:rgba(103, 28, 88, 0.862);color:white;padding:50px 10% 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+.footer-bottom{width:100%;text-align:center;padding-top:18px;margin-top:8px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:#F5E6A7;letter-spacing:.4px;}
+.social{align-items:center;flex-wrap:wrap;gap:12px;}
+.social h3{width:100%;margin:0 0 6px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;transition:.3s;}
+.social a:hover{background:#D4AF37;transform:translateY(-2px);} 
+.social i{font-size:20px;cursor:pointer;line-height:1;}
+
+/* SUCCESS MSG */
+.success-msg{display:none;background:#d4edda;border:1px solid #c3e6cb;color:#155724;padding:14px 20px;border-radius:10px;margin-top:15px;text-align:center;font-size:15px;}
+
+@media(max-width:768px){
+  nav ul{margin-top:15px;gap:18px;flex-wrap:wrap;justify-content:center;}
+  .page-hero h1{font-size:2rem;}
+  .form-row{grid-template-columns:1fr;}
+  .contact-layout{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="Photos/final_logo.jpeg" alt="Hotel Rukhmini Palace Logo">
+        <div class="logo-text">
+            <span class="star-text">Three Star</span>
+            <h1>Hotel Rukhmini Palace</h1>
+            <span>Admapur</span>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="nearby_places.html">Nearby Places</a></li>
+        <li><a href="contact.html" class="active-link">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="page-hero">
+  <h1>Contact Us</h1>
+  <p>We'd Love to Hear From You</p>
+</div>
+
+<!-- CONTACT INFO CARDS -->
+<section class="section">
+  <h2 class="section-title">Reach Us Anytime</h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <i class="fas fa-map-marker-alt"></i>
+      <h3>Our Address</h3>
+      <p>Nippani-Radhanagri road, Nidhori,<br>Tal. Kagal, Dist. Kolhapur – 416208</p>
+    </div>
+    <div class="info-card">
+      <i class="fas fa-phone-alt"></i>
+      <h3>Call Us</h3>
+      <p>
+        <a href="tel:7719821141">7719821141</a><br>
+        <a href="tel:7620766630">7620766630</a>
+      </p>
+    </div>
+    <div class="info-card">
+      <i class="fas fa-envelope"></i>
+      <h3>Email Us</h3>
+      <p><a href="mailto:info@rukhminpalace.com">info@rukhminpalace.com</a></p>
+    </div>
+    <div class="info-card">
+      <i class="fas fa-clock"></i>
+      <h3>Working Hours</h3>
+      <p>Open 24 × 7<br>Front Desk Always Available</p>
+    </div>
+  </div>
+
+  <!-- FORM + MAP -->
+  <div class="contact-layout">
+
+    <!-- FORM -->
+    <div class="contact-form">
+      <h3>Send Us a Message ✉️</h3>
+
+      <div class="form-row">
+        <div class="input-box">
+          <label>Full Name</label>
+          <input type="text" id="cName" placeholder="Your full name">
+        </div>
+        <div class="input-box">
+          <label>Phone Number</label>
+          <input type="tel" id="cPhone" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+
+      <div class="input-box">
+        <label>Email Address</label>
+        <input type="email" id="cEmail" placeholder="you@example.com">
+      </div>
+
+      <div class="input-box">
+        <label>Enquiry Type</label>
+        <select id="cType">
+          <option value="">Select enquiry type</option>
+          <option>Room Booking</option>
+          <option>Table Reservation</option>
+          <option>Event / Banquet</option>
+          <option>General Enquiry</option>
+          <option>Feedback</option>
+        </select>
+      </div>
+
+      <div class="input-box">
+        <label>Your Message</label>
+        <textarea id="cMsg" rows="5" placeholder="How can we help you?"></textarea>
+      </div>
+
+      <button class="submit-btn" onclick="sendMessage()">Send Message ✈</button>
+      <div class="success-msg" id="successMsg">✅ Thank you! We'll get back to you shortly.</div>
+    </div>
+
+    <!-- MAP + DIRECTIONS -->
+    <div class="map-box">
+      <h3>📍 Find Us Here</h3>
+      <div class="map-frame">
+        <!-- Embedded Google Maps for Kagal, Kolhapur area -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4620.913402432181!2d74.16166368831321!3d16.404100387919712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc059005d1b00dd%3A0xe7213e7b6549449b!2sHotel%20Rukmini%20palace%20Three%20star!5e0!3m2!1sen!2sus!4v1783013477615!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </iframe>
+      </div>
+      <div class="direction-info">
+        <p>
+          <strong>From Kolhapur city:</strong> Take NH166 towards Kagal, then follow Nippani-Radhanagri road towards Nidhori village. The hotel is at Admapur-Waghapur Fata.<br><br>
+          <strong>Nearest landmark:</strong> Kagal Bus Stand (~6 km)<br>
+          <strong>Parking:</strong> Free on-site parking available
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a class="whatsapp-float" href="https://wa.me/917719821141" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h3>Address</h3>
+    <p>
+      Hotel Rukhmini Palace<br>
+      Nippani-Radhanagri road, Nidhori<br>
+      (Admapur-Waghapur Fata)<br>
+      Tal. Kagal, Dist. Kolhapur – 416208<br>
+      📞 7719821141 / 7620766630
+    </p>
+  </div>
+  <div class="social">
+    <h3>Follow Us</h3>
+    <a href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/7620766630" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://facebook.com/your_facebook_page" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+  </div>
+  <div class="footer-bottom">Designed and Developed by <strong>ShreeYaan WebTech</strong></div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+    });
+  });
+}
+
+async function sendMessage(){
+  const name = document.getElementById("cName").value.trim();
+  const phone = document.getElementById("cPhone").value.trim();
+  const email = document.getElementById("cEmail").value.trim();
+  const type = document.getElementById("cType").value;
+  const msg = document.getElementById("cMsg").value.trim();
+
+  if(!name || !phone || !msg){
+    Swal.fire({
+      icon: "warning",
+      title: "Missing Details",
+      text: "Please fill in your name, phone, and message.",
+      confirmButtonColor: "rgba(124,8,8,0.862)"
+    });
+    return;
+  }
+
+  // Send to backend via Nodemailer
+  try {
+    const res = await fetch("http://localhost:3000/send-contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        email,
+        message: `Type: ${type || "General"}\n\n${msg}`
+      })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error);
+  } catch (err) {
+    console.error("Email send failed:", err);
+    // not blocking WhatsApp fallback below even if email fails
+  }
+
+  // Existing WhatsApp redirect
+  const waText = `*New Enquiry – Hotel Rukhmini Palace*\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email || "Not provided"}\nType: ${type || "General"}\n\nMessage:\n${msg}`;
+  window.open("https://wa.me/917719821141?text=" + encodeURIComponent(waText), "_blank");
+
+  document.getElementById("successMsg").style.display = "block";
+  document.getElementById("cName").value = "";
+  document.getElementById("cPhone").value = "";
+  document.getElementById("cEmail").value = "";
+  document.getElementById("cType").value = "";
+  document.getElementById("cMsg").value = "";
+}
+</script>
+
+</body>
+</html>

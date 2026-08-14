@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Hotel Rukhmini Palace</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Trebuchet MS','Lucida Sans Unicode',Arial,sans-serif;scroll-behavior:smooth;}
+body{background:#fff;min-height:100vh;display:flex;flex-direction:column;}
+
+/* NAVBAR */
+nav{
+    background: rgb(103, 28, 88);
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid #D4AF37;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo img{
+    width: 65px;
+    height: 60px;
+    border-radius: 0;
+    display: block;
+}
+
+.logo-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text h1{
+    margin: 0;
+    color: white;
+    font-size: 18px;
+}
+
+.logo h1{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.logo-text span{
+    display: block;
+    color: #D4AF37;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+.logo-text .star-text{
+    font-style: italic;
+    color: #F5E6A7;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 2px;
+}
+
+nav ul{
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav ul li a{
+    color: #F5E6A7;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .3s;
+    position: relative;
+}
+
+nav ul li a:hover{
+    color: #D4AF37;
+}
+
+nav ul li a::after{
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #D4AF37;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: .35s;
+}
+
+nav ul li a:hover::after{
+    width: 100%;
+}
+
+nav.scrolled{
+    background: #57103E;
+}
+
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle span{
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: #F5E6A7;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media(max-width:768px){
+    nav{
+        padding: 10px 5%;
+    }
+    nav ul{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 280px;
+        background: rgb(103, 28, 88);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right .4s ease;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+        padding: 0;
+    }
+    nav ul.active{
+        right: 0;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .logo img{
+        width: 50px;
+        height: 46px;
+    }
+    .logo-text h1{
+        font-size: 15px;
+    }
+    .logo-text span{
+        font-size: 13px;
+    }
+}
+
+/* ── FULL-WIDTH SLIDESHOW ── */
+.slideshow{
+  position:relative;
+  width:100%;
+  height:520px;
+  overflow:hidden;
+}
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease-in-out;
+}
+.slide.active{opacity:1;}
+
+/* Dark overlay so text pops */
+.slide::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.38);
+}
+
+/* Caption on each slide */
+.slide-caption{
+  position:absolute;
+  bottom:60px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  text-align:center;
+  color:#fff;
+  width:80%;
+}
+.slide-caption h2{font-size:2.2rem;text-shadow:0 2px 8px rgba(0,0,0,0.6);margin-bottom:8px;}
+.slide-caption p{font-size:1.1rem;color:#D4AF37;letter-spacing:2px;text-shadow:0 1px 4px rgba(0,0,0,0.5);}
+
+/* Dot indicators */
+.dots{
+  position:absolute;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:20;
+}
+.dot{
+  width:12px;height:12px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.5);
+  cursor:pointer;
+  transition:.3s;
+  border:2px solid #fff;
+}
+.dot.active{background:#D4AF37;border-color:#D4AF37;}
+
+/* Prev / Next arrows */
+.arrow{
+  position:absolute;
+  top:50%;transform:translateY(-50%);
+  z-index:20;
+  background:rgba(0,0,0,0.4);
+  color:#fff;
+  border:none;
+  width:44px;height:44px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+  transition:.3s;
+  display:flex;align-items:center;justify-content:center;
+}
+.arrow:hover{background:#b8860b;}
+.arrow.prev{left:18px;}
+.arrow.next{right:18px;}
+
+/* SECTION WRAPPER */
+.section{padding:70px 10%;}
+.section-title{text-align:center;font-size:2.2rem;color:rgb(103, 28, 88);margin-bottom:50px;position:relative;}
+.section-title::after{content:"";display:block;width:60px;height:3px;background:#D4AF37;margin:12px auto 0;}
+
+/* STORY – horizontal layout */
+.story{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+.story-text p{font-size:17px;line-height:1.9;color:#444;margin-bottom:18px;}
+.story-text .highlight{color:rgb(103, 28, 88);font-weight:bold;}
+
+/* STATS */
+.stats-band{background:rgba(103, 28, 88, 0.9);padding:50px 10%;display:flex;justify-content:space-around;flex-wrap:wrap;gap:30px;}
+.stat{text-align:center;color:#fff;}
+.stat h2{font-size:3rem;color:#D4AF37;}
+.stat p{font-size:1rem;letter-spacing:1px;margin-top:5px;}
+
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;}
+.value-card{background:#f8f5ef;border-radius:16px;padding:35px 28px;text-align:center;border-bottom:4px solid #D4AF37;transition:transform .3s;}
+.value-card:hover{transform:translateY(-6px);}
+.value-card i{font-size:2.2rem;color:#b8860b;margin-bottom:15px;}
+.value-card h3{color:rgb(103, 28, 88);margin-bottom:10px;font-size:1.2rem;}
+.value-card p{color:#666;line-height:1.7;font-size:15px;}
+
+/* FOOTER */
+footer{background:rgba(103, 28, 88, 0.862);color:white;padding:50px 10% 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+.footer-bottom{width:100%;text-align:center;padding-top:18px;margin-top:8px;border-top:1px solid rgba(255,255,255,.2);font-size:14px;color:#F5E6A7;letter-spacing:.4px;}
+.social{align-items:center;flex-wrap:wrap;gap:12px;}
+.social h3{width:100%;margin:0 0 6px;}
+.social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;transition:.3s;}
+.social a:hover{background:#D4AF37;transform:translateY(-2px);} 
+.social i{font-size:20px;cursor:pointer;line-height:1;}
+
+@media(max-width:768px){
+  nav ul{margin-top:15px;gap:18px;flex-wrap:wrap;justify-content:center;}
+  .slideshow{height:300px;}
+  .slide-caption h2{font-size:1.4rem;}
+  .story{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <img src="Photos/final_logo.jpeg" alt="Hotel Rukhmini Palace Logo">
+        <div class="logo-text">
+            <span class="star-text">Three Star</span>
+            <h1>Hotel Rukhmini Palace</h1>
+            <span>Admapur</span>
+        </div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active-link">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="room.html">Rooms</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="nearby_places.html">Nearby Places</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- FULL-WIDTH AUTO SLIDESHOW -->
+<div class="slideshow" id="slideshow">
+
+  <div class="slide active" style="background-image:url('Photos/downside_entrance.jpg.jpeg')">
+    <div class="slide-caption">
+      <h2>Welcome to Rukhmini Palace</h2>
+      <p>Where Luxury Meets Warmth</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('Photos/roomjpg.jpeg')">
+    <div class="slide-caption">
+      <h2>Premium AC Rooms & Suites</h2>
+      <p>Crafted for Your Comfort</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('Photos/window_facing_dining.jpg.jpeg')">
+    <div class="slide-caption">
+      <h2>Authentic Fine Dining</h2>
+      <p>Savour the Flavours of Kolhapur</p>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('Photos/reception.jpg.jpeg')">
+    <div class="slide-caption">
+      <h2>Exceptional Hospitality</h2>
+      <p>Your Home Away From Home</p>
+    </div>
+  </div>
+
+  <!-- Arrows -->
+  <button class="arrow prev" onclick="changeSlide(-1)">&#8249;</button>
+  <button class="arrow next" onclick="changeSlide(1)">&#8250;</button>
+
+  <!-- Dots -->
+  <div class="dots" id="dots"></div>
+</div>
+
+<!-- OUR STORY -->
+<section class="section">
+  <h2 class="section-title">Our Story</h2>
+  <div class="story">
+
+    <img src="Photos/downside_entrance.jpg.jpeg" alt="Hotel Interior"
+      style="width:100%;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.15);object-fit:cover;height:420px;">
+
+    <div class="story-text">
+      <p>
+        <span class="highlight">Hotel Rukhmini Palace</span> was founded with a single vision — to bring
+        world-class hospitality to the heart of Kolhapur. Nestled along the scenic
+        Nippani-Radhanagri road, our property has been a home-away-from-home for travellers,
+        families, and business guests for over a decade.
+      </p>
+      <p>
+        Every room, every dish, and every interaction is crafted with care — because we believe
+        that true luxury is not just about opulence, it is about feeling genuinely welcomed.
+        Our staff is trained to anticipate your needs before you voice them.
+      </p>
+      <p>
+        From our grand event hall to our tranquil AC suites, every corner of Rukhmini Palace
+        has been designed to offer comfort, elegance, and an experience that you will return
+        to again and again.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stat"><h2>250+</h2><p>Happy Guests Monthly</p></div>
+  <div class="stat"><h2>20+</h2><p>Premium Rooms</p></div>
+  <div class="stat"><h2>15+</h2><p>Years of Hospitality</p></div>
+  <div class="stat"><h2>24×7</h2><p>Guest Support</p></div>
+</div>
+
+<!-- OUR VALUES -->
+<section class="section" style="background:#fff;">
+  <h2 class="section-title">Why Choose Us</h2>
+  <div class="values-grid">
+    <div class="value-card"><i class="fas fa-star"></i><h3>Premium Quality</h3><p>Handpicked furnishings, fine linen, and spotless housekeeping — every detail is tended to.</p></div>
+    <div class="value-card"><i class="fas fa-utensils"></i><h3>Fine Dining</h3><p>Our in-house restaurant serves authentic Kolhapuri cuisine and multi-cuisine dishes prepared by expert chefs.</p></div>
+    <div class="value-card"><i class="fas fa-shield-alt"></i><h3>Safe &amp; Secure</h3><p>24×7 security, CCTV surveillance, and a dedicated front-desk team ensure your safety at all times.</p></div>
+    <div class="value-card"><i class="fas fa-map-marker-alt"></i><h3>Prime Location</h3><p>Conveniently located on Nippani-Radhanagri road, well connected to Kolhapur city and major highways.</p></div>
+    <div class="value-card"><i class="fas fa-wifi"></i><h3>Modern Amenities</h3><p>High-speed WiFi, AC rooms, event halls, parking, and round-the-clock room service at your fingertips.</p></div>
+    <div class="value-card"><i class="fas fa-heart"></i><h3>Warm Hospitality</h3><p>We treat every guest like family — because at Rukhmini Palace, your comfort is our top priority.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h3>Address</h3>
+    <p>
+      Hotel Rukhmini Palace<br>
+      Nippani-Radhanagri road, Nidhori<br>
+      (Admapur-Waghapur Fata)<br>
+      Tal. Kagal, Dist. Kolhapur – 416208<br>
+      📞 7719821141 / 7620766630
+    </p>
+  </div>
+  <div class="social">
+    <h3>Follow Us</h3>
+    <a href="https://instagram.com/hotel_rukmini_?igsh=azRkd3Zna3FnZDA5" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/7620766630" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://facebook.com/your_facebook_page" target="_blank" rel="noopener" aria-label="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+  </div>
+  <div class="footer-bottom">Designed and Developed by <strong>ShreeYaan WebTech</strong></div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    menuToggle.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuToggle.classList.remove('active');
+    });
+  });
+}
+
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('dots');
+let current = 0;
+let timer;
+
+// Build dots
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsContainer.appendChild(d);
+});
+
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsContainer.children[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dotsContainer.children[current].classList.add('active');
+  resetTimer();
+}
+
+function changeSlide(dir) { goTo(current + dir); }
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => goTo(current + 1), 3000);
+}
+
+// Auto-start
+resetTimer();
+</script>
+
+</body>
+</html>
