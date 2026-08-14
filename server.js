@@ -1,12 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
+const path = require("path");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -19,6 +21,11 @@ const transporter = nodemailer.createTransport({
 });
 
 const CONTACT_TO = process.env.CONTACT_TO;
+const PORT = Number(process.env.PORT) || 3000;
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // ROOM BOOKING
 app.post("/send-booking", async (req, res) => {
@@ -92,6 +99,4 @@ app.post("/send-contact", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`Server running on http://localhost:${process.env.PORT}`)
-);
+module.exports = app;
